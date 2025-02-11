@@ -17,6 +17,6 @@ export class AccountResolver {
 
   @Mutation(() => Boolean, { name: 'createUser' })
   public async create(@Args('data') input: CreateUserInput) {
-    return this.accountService.create(input)
+    return await this.accountService.create(input)
   }
 }
