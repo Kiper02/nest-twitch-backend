@@ -24,9 +24,20 @@ export class UserModel implements User {
   @Field(() => String, { nullable: true })
   public bio: string;
 
-
   @Field(() => Boolean)
   public isEmailVerified: boolean;
+
+  @Field(() => Boolean)
+  public isTotpEnabled: boolean;
+
+  @Field(() => String, {nullable: true})
+  public totpSecret: string;
+
+  @Field(() => Boolean)
+  public isDeactivated: boolean;
+  
+  @Field(() => Date, {nullable: true})
+  public deactivatedAt: Date;
 
   @Field(() => Boolean)
   public isVerified: boolean;

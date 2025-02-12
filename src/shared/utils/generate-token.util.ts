@@ -31,7 +31,6 @@ export async function generateToken(prismaService: PrismaService, user: User, ty
             }
         })
     }
-
     const newToken = await prismaService.token.create({
         data: {
             token,

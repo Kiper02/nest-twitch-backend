@@ -10,6 +10,7 @@ import { ValidationPipe } from '@nestjs/common';
 import { parseBoolean } from './shared/utils/parse-boolean.util';
 import { RedisService } from './core/redis/redis.service';
 import { ms, MsUnit } from './shared/utils/ms.util';
+import { NextFunction, Request, Response } from 'express';
 
 async function bootstrap() {
   const app = await NestFactory.create(CoreModule);
@@ -23,6 +24,7 @@ async function bootstrap() {
       transform: true,
     })
   )
+
 
   app.use(session({
     secret: config.getOrThrow<string>('SESSION_SECRET'),
@@ -47,6 +49,8 @@ async function bootstrap() {
     credentials: true,
     exposedHeaders: ['set-cookie']
   })
+
+
 
   await app.listen(config.getOrThrow<number>('APPLICATION_PORT'));
 }

@@ -29,9 +29,9 @@ export function getSessionMetadata(
       latitude: location?.ll ? location.ll[1] : 0, 
     },
     device: {
-      browser: device.client.name || 'Неизвестный браузер', 
-      os: device.os.name || 'Неизвестная ОС', 
-      type: device.device.type || 'Неизвестное устройство',
+      browser: device?.client?.name || 'Неизвестный браузер', 
+      os: device?.os?.name || 'Неизвестная ОС', 
+      type: device?.device?.type || 'Неизвестное устройство',
     },
     ip,
   };

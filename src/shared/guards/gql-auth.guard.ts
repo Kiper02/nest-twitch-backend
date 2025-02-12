@@ -12,13 +12,13 @@ export class GqlAuthGuard implements CanActivate {
         const ctx = GqlExecutionContext.create(context);
         const request = ctx.getContext().req;
 
-        if(typeof request.sesssion.userId === 'undefined') {
+        if(typeof request.session.userId === 'undefined') {
             throw new UnauthorizedException('Пользователь не авторизован');
         }
 
         const user = await this.prismaService.user.findUnique({
             where: {
-                id: request.sesssion.userId
+                id: request.session.userId
             }
         })
 
