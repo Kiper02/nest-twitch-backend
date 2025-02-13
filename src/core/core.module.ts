@@ -13,6 +13,9 @@ import { MailModule } from 'src/modules/libs/mail/mail.module';
 import { PasswordRecoveryModule } from 'src/modules/auth/password-recovery/password-recovery.module';
 import { TotpModule } from 'src/modules/auth/totp/totp.module';
 import { DeactiveModule } from 'src/modules/auth/deactive/deactive.module';
+import { CronModule } from 'src/modules/cron/cron.module';
+import { StorageModule } from 'src/modules/libs/storage/storage.module';
+import { ProfileModule } from 'src/modules/auth/profile/profile.module';
 
 @Module({
   imports: [
@@ -27,9 +30,12 @@ import { DeactiveModule } from 'src/modules/auth/deactive/deactive.module';
       inject: [ConfigService],
     }),
     PrismaModule,
+    CronModule,
     SessionModule,
+    StorageModule,
     RedisModule,
     AccountModule,
+    ProfileModule,
     VerificationModule,
     MailModule,
     PasswordRecoveryModule,

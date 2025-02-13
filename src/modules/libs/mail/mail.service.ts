@@ -6,6 +6,7 @@ import VerificationTemplate from './templates/verification.template';
 import PasswordRecoveryTemplate from './templates/password-recovery.template';
 import type { SessionMetaData } from 'src/shared/types/session-metadata.types';
 import DeactiveTemplate from './templates/deactive.template';
+import AccountDeletionTemplate from './templates/account-deletion.template';
 
 @Injectable()
 export class MailService {
@@ -29,6 +30,12 @@ export class MailService {
     public async sendDeactiveToken(email: string, token: string, metadata: SessionMetaData) {
         const html = await render(DeactiveTemplate({token, metadata}))
         return this.sendMail(email, 'Деактивация аккаунта', html);
+    }
+
+    public async sendAccountDeletion(email: string) {
+        const domain = this.configService.getOrThrow<string>('ALLOWED_ORIGIN')
+        const html = await render(AccountDeletionTemplate({domain}))
+        return this.sendMail(email, 'Аккаунт удалён', html);
     }
 
     private sendMail(email: string, subject: string, html: string) {

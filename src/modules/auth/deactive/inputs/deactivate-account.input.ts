@@ -3,13 +3,13 @@ import { IsEmail, IsNotEmpty, IsOptional, IsString, Length, Matches, MinLength }
 
 @InputType()
 export class DeactivateAccountInput {
-    @Field()
+    @Field(() => String)
     @IsString()
     @IsNotEmpty()
     @IsEmail()
     public email: string;
     
-    @Field()
+    @Field(() => String)
     @IsString()
     @IsNotEmpty()
     @MinLength(8)
