@@ -16,6 +16,11 @@ import { DeactiveModule } from 'src/modules/auth/deactive/deactive.module';
 import { CronModule } from 'src/modules/cron/cron.module';
 import { StorageModule } from 'src/modules/libs/storage/storage.module';
 import { ProfileModule } from 'src/modules/auth/profile/profile.module';
+import { StreamModule } from 'src/modules/stream/stream.module';
+import { LivekitModule } from 'src/modules/libs/livekit/livekit.module';
+import { getLiveKitConfig } from './config/livekit.config';
+import { IngressModule } from 'src/modules/stream/ingress/ingress.module';
+import { WebhookModule } from 'src/modules/webhook/webhook.module';
 
 @Module({
   imports: [
@@ -29,10 +34,18 @@ import { ProfileModule } from 'src/modules/auth/profile/profile.module';
       useFactory: getGraphQlConfig,
       inject: [ConfigService],
     }),
+    LivekitModule.registerAsync({
+      imports: [ConfigModule],
+      useFactory: getLiveKitConfig,
+      inject: [ConfigService],
+    }),
     PrismaModule,
     CronModule,
     SessionModule,
     StorageModule,
+    LivekitModule,
+    IngressModule,
+    WebhookModule,
     RedisModule,
     AccountModule,
     ProfileModule,
@@ -41,6 +54,7 @@ import { ProfileModule } from 'src/modules/auth/profile/profile.module';
     PasswordRecoveryModule,
     TotpModule,
     DeactiveModule,
+    StreamModule,
   ],
 })
 export class CoreModule {}
